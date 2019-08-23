@@ -1,9 +1,15 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const parkingLot = new ParkingLot();
-
+    const parkingLot = new ParkingLot(function (from, to) =>{
+        const time = ((to - from) / 1000)-5;
+        if (time < 0 ){
+            return 0
+        }else {
+        return 15*(math.floor(time/15)+1)*1
+        }
+    });
     const checkin = document.getElementById('entrance-gate');
     const checkout = document.getElementById('exit-gate');
-    
+
     checkin.addEventListener('click', () => {
         try {
             const licensePlate = prompt('Nummerplade?');
