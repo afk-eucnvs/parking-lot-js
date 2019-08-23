@@ -1,19 +1,13 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const parkingLot = new ParkingLot(function (from, to) =>{
-        const time = ((to - from) / 1000)-5;
-        if (time < 0 ){
-            return 0
-        }else {
-        return 15*(math.floor(time/15)+1)*1
-        }
-    });
+function main(parkingLot) {
     const checkin = document.getElementById('entrance-gate');
     const checkout = document.getElementById('exit-gate');
-
+    
     checkin.addEventListener('click', () => {
         try {
             const licensePlate = prompt('Nummerplade?');
-            parkingLot.checkin(licensePlate);
+            if (licensePlate) {
+                parkingLot.checkin(licensePlate);
+            }
         } catch (e) {
             alert(e.message);
         }
@@ -28,7 +22,8 @@ document.addEventListener('DOMContentLoaded', () => {
             var exchange = undefined;
             var paid = 0;
             while (typeof(exchange) != 'number') {
-                const amount = parseInt(prompt(`Betal ${price} DKK. Betalt: ${paid} DKK.`));
+                const inp = prompt(`Betal ${price} DKK. Betalt: ${paid} DKK.`)
+                const amount = parseInt(inp) || 0;
                 paid += amount;
                 exchange = parkingLot.pay(licensePlate, amount);
             }
@@ -42,4 +37,4 @@ document.addEventListener('DOMContentLoaded', () => {
             alert(e.message);
         }
     })
-});
+}
