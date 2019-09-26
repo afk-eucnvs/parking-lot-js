@@ -4,6 +4,7 @@ function main(parkingLot) {
     
     checkin.addEventListener('click', () => {
         try {
+            alert(parkingLot.getDescription());
             const licensePlate = prompt('Nummerplade?');
             if (licensePlate) {
                 parkingLot.checkin(licensePlate);
@@ -23,7 +24,7 @@ function main(parkingLot) {
             var paid = 0;
             while (typeof(exchange) != 'number') {
                 const inp = prompt(`Betal ${price} DKK. Betalt: ${paid} DKK.`)
-                const amount = parseInt(inp) || 0;
+                const amount = parseInt(inp) || 0;
                 paid += amount;
                 exchange = parkingLot.pay(licensePlate, amount);
             }
